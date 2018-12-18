@@ -1,0 +1,49 @@
+.modal-content {
+  & > .row {
+    margin: {
+      left: -.75rem;
+      right: -.75rem;
+    }
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .address {
+    margin: 1rem 0;
+  }
+
+  blockquote {
+    margin: 8px 0;
+  }
+}
+
+#base-modal {
+  @media only screen and (min-width: 1367px) {
+    width: 40%;
+  }
+}
+
+#modal-product-class {
+  max-width: 300px;
+}
+
+#base-modal-large {
+    @media only screen and (min-width: 1367px) {
+        width: 65%;
+    }
+}
+
+.modal-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title h5 {
+    padding-top: 0px !important;
+}
+
+.modal {
+    max-height: 90% !important;
+}
