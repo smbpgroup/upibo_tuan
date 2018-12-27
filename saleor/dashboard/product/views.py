@@ -21,6 +21,7 @@ from ...product.utils.costs import (
 from ..views import staff_member_required
 from .filters import ProductAttributeFilter, ProductFilter, ImageFilter, ProductTypeFilter
 
+import logging
 
 @staff_member_required
 @permission_required('product.manage_products')
@@ -737,11 +738,33 @@ def attribute_delete(request, pk):
 
 @staff_member_required
 @permission_required('product.manage_products')
-def product_create_page(request):
+def product_create_page(request, variant_pk):
+    logging.info('product_create_page : %r', variant_pk)
+    variant = get_object_or_404(ProductVariant, pk=variant_pk)
+    images = variant.images.all()
+    logging.info('product_create_page variant : %r', variant.images.all())
+    ctx = {
+        'images': images,
+        'update': 0
+    }
     return TemplateResponse(
         request,
         'dashboard/product/modal/'
-        'create_page.html')
+        'create_page.html', ctx)
+
+@staff_member_required
+@permission_required('product.manage_products')
+def product_update_page(request, variant_pk):
+    variant = get_object_or_404(ProductVariant, pk=variant_pk)
+    images = variant.images.all()
+    ctx = {
+        'images': images,
+        'update': 1
+    }
+    return TemplateResponse(
+        request,
+        'dashboard/product/modal/'
+        'create_page.html', ctx)
 
 @staff_member_required
 @permission_required('product.manage_products')

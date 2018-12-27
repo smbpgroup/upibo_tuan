@@ -16,25 +16,17 @@
       <canvas id="c" />
     </div>
     <div class="sidebar-right">
-      <div class="image-item">
-        <img style="width: 100%;"  src="https://image2.tienphong.vn/w665/Uploaded/2018/pcgycivo/2018_05_24/1_dhtp.jpg">
-      </div>
 
-      <div class="image-item">
-        <img style="width: 100%;"  src="https://images.pexels.com/photos/46974/muscari-common-grape-hyacinth-blossom-bloom-46974.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-      </div>
+        {% for image in images %}
+            <div class="image-item">
+                <img style="width: 100%;"  src="{{ image.image.crop.255x255 }}" srcset="{{ image.image.crop.255x255 }} 1x, {{ image.image.crop.510x510 }} 2x" alt="{{ image.alt }}">
 
-      <div class="image-item">
-        <img style="width: 100%;"  src="https://images.pexels.com/photos/9611/flowers.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-      </div>
-
-      <div class="image-item">
-        <img style="width: 100%;"  src="https://images.pexels.com/photos/77172/pexels-photo-77172.jpeg?cs=srgb&dl=blooming-blossom-close-up-77172.jpg&fm=jpg">
-      </div>
-
-      <div class="image-item">
-        <img style="width: 100%;"  src="https://images.pexels.com/photos/46192/rose-the-wild-flower-powder-46192.jpeg?cs=srgb&dl=bloom-blossom-flora-46192.jpg&fm=jpg">
-      </div>
+            </div>
+        {% empty %}
+            <div class="image-item">
+                {% trans "No images" %}
+            </div>
+        {% endfor %}
     </div>
   </div>
   <div style="padding: 10px 0px;">
@@ -100,21 +92,21 @@
       <div style="width: 20%; margin-left: 20px;">
           <div>Font size</div>
           <div style="position: relative; margin: 10px 0px;">
-            <input type="range" step="1" min="1" max="120">
+            <input id="font_size" type="range" step="1" min="1" max="120">
           </div>
       </div>
 
       <div style="width: 20%; margin-left: 20px;">
           <div>Line height</div>
           <div style="position: relative; margin: 10px 0px;">
-            <input type="range" step="0.1" min="0" max="10">
+            <input id="line_height" type="range" step="0.1" min="0" max="10">
           </div>
       </div>
 
       <div style="width: 20%; margin-left: 20px;">
           <div>Char spacing</div>
           <div style="position: relative; margin: 10px 0px;">
-            <input type="range" step="10" min="-200" max="800">
+            <input id="char_spacing" type="range" step="10" min="-200" max="800">
           </div>
       </div>
 
@@ -122,5 +114,9 @@
 {% endblock %}
 
 {% block primary_action %}
-  {% trans "Create" context "Dashboard add action" %}
+  {% if update == 1 %}
+    {% trans "Update" context "Dashboard add action" %}
+  {% else %}
+    {% trans "Create" context "Dashboard add action" %}
+  {% endif %}
 {% endblock %}

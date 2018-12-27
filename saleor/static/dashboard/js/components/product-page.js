@@ -6,6 +6,9 @@ var fontStyle = null;
 var textDecoration = null;
 var fontFamily = 'helvetica';
 var fill = '#000';
+var font_size = '12';
+var line_height = '1.4';
+var char_spacing = '100';
 var current_product_template = null;
 
 const onChangeBackground = (e) => {
@@ -56,6 +59,9 @@ const clearCanvas = () => {
     textDecoration = null;
     fontFamily = 'helvetica';
     fill = '#000';
+    font_size = '12';
+    line_height = '1.4';
+    char_spacing = '100';
     current_product_template = null;
 };
 
@@ -201,6 +207,40 @@ const setFill = () => {
     setActiveStyle('fill', fill, null);
 }
 
+const setFontSize = () => {
+
+    var object = canvas.getActiveObject();
+    if (!object) {
+        return;
+    } else {
+        font_size = $('#font_size').val();
+    }
+
+    setActiveStyle('fontSize', parseInt(font_size), null);
+}
+
+const setLineHeight = () => {
+
+    var object = canvas.getActiveObject();
+    if (!object) {
+        return;
+    } else {
+        line_height = $('#line_height').val();
+    }
+
+    setActiveStyle('lineHeight', parseFloat(line_height), null);
+}
+
+const setCharSpacing = () => {
+    var object = canvas.getActiveObject();
+    if (!object) {
+        return;
+    } else {
+        char_spacing = $('#char_spacing').val();
+    }
+    setActiveStyle('charSpacing', parseInt(char_spacing), null);
+}
+
 const removeSelected = () => {
     if(canvas) {
         var activeObject = canvas.getActiveObject(),
@@ -274,11 +314,13 @@ const initFabricCanvas = () => {
 
 const loadCanvasFromJson = (obj) => {
 
+    let listSplitString = window.location.pathname.split('/');
+
     var linkPopup = $('<a>').attr({
         'id': ('l' + obj.id),
         'class': 'modal-trigger-custom',
         'href': '#base-modal-large',
-        'data-href': '/dashboard/products/page/'
+        'data-href': '/dashboard/products/page/' + listSplitString[5] + '/update/'
     });
 
     linkPopup.append(
@@ -423,6 +465,9 @@ $(document).on('click', '#container_product_temp_id div', onClickItem);
 
 $(document).on('change', 'select.form-control', setFontFamily);
 $(document).on('change', '#fill', setFill);
+$(document).on('change', '#font_size', setFontSize);
+$(document).on('change', '#char_spacing', setCharSpacing);
+$(document).on('change', '#line_height', setLineHeight);
 
 $(document).ready(function() {
     renderListProductTemplate();

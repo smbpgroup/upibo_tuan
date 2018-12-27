@@ -83,7 +83,9 @@
                 {% endfor %}
                 <div>
                   <div id="container_product_temp_id"></div>
-                  <button class="btn-flat waves-effect modal-trigger-custom" href="#base-modal-large" data-href="{% url 'dashboard:product-create-page' %}">Create</button>
+                  {% if variant.pk %}
+                    <button class="btn-flat waves-effect modal-trigger-custom" href="#base-modal-large" data-href="{% url 'dashboard:product-create-page' variant_pk=variant.pk %}">Create</button>
+                  {% endif %}
                 </div>
               </div>
               <div class="col s12 m4">

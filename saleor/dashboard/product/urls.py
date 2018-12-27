@@ -95,6 +95,8 @@ urlpatterns = [
     url(r'attributes/(?P<attribute_pk>[0-9]+)/values/reorder/$',
         views.ajax_reorder_attribute_choice_values,
         name='product-attribute-values-reorder'),
-    url(r'page/',
-        views.product_create_page, name='product-create-page')
+    url(r'^page/(?P<variant_pk>\d+)/add/$',
+        views.product_create_page, name='product-create-page'),
+    url(r'^page/(?P<variant_pk>\d+)/update/$',
+        views.product_update_page, name='product-update-page')
 ]
