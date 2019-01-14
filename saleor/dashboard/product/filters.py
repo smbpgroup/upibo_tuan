@@ -68,6 +68,10 @@ class ImageFilter(SortedFilterSet):
     name = CharFilter(
         label=pgettext_lazy('Image list filter label', 'Name'),
         lookup_expr='icontains')
+    category = ModelMultipleChoiceFilter(
+        label=pgettext_lazy('Gallery list filter label', 'Category'),
+        name='category',
+        queryset=Category.objects.all())
     sort_by = OrderingFilter(
         label=pgettext_lazy('Image list filter label', 'Sort by'),
         fields=IMAGE_SORT_BY_FIELDS.keys(),

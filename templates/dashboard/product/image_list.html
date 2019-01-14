@@ -115,6 +115,7 @@
         </li>
       </script>
     </div>
+    {% paginate images %}
     <div class="col s12 l3" id="filters">
       {% if not is_empty %}{% filters filter_set %}{% endif %}
     </div>

@@ -58,6 +58,9 @@
             <div class="row">
               {{ form.name|materializecss }}
             </div>
+            <div class="row">
+              {{ form.category|materializecss }}
+            </div>
           </div>
           <div class="card-action right-align">
             <a href="{% url "dashboard:gallery-list" %}" class="btn-flat waves-effect">

@@ -547,7 +547,7 @@ class UploadImageForm(forms.ModelForm):
 class GalleryUploadImageForm(forms.ModelForm):
     class Meta:
         model = ImageData
-        fields = ('image','name')
+        fields = ('image','name','category')
         labels = {
             'image': pgettext_lazy('Product image', 'Image')}
 

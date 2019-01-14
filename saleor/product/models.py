@@ -384,6 +384,8 @@ class ImageData(SortableModel):
         'Name',
         max_length=80
     )
+    category = models.ForeignKey(
+        Category, related_name='imagedata', on_delete=models.CASCADE, blank=True, null=True)
     image = VersatileImageField(
         upload_to='medias', ppoi_field='ppoi', blank=False)
     height = models.PositiveIntegerField(
